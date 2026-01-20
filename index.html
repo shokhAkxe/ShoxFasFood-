@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shox Fast Food Restorani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(45deg, #ff4500, #ff6b6b);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            background-color: #2d2d2d;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4500;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+        
+
+        /* Home Section */
+        .home-section {
+            background: url('image/FastFood1.jpg') no-repeat center/cover;
+            padding: 5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .home-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+        }
+
+        .home-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section .order-now-btn {
+            background: linear-gradient(45deg, #ff4500, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section .order-now-btn:hover {
+            background: linear-gradient(45deg, #e03e00, #ff4d4d);
+        }
+
+        .special-offer, .about-section {
+            background-color: #fff3e0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .special-offer h2, .about-section h2 {
+            color: #ff4500;
+            margin-bottom: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            margin: 1rem 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .order-btn {
+            background: linear-gradient(45deg, #ff4500, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .order-btn:hover {
+            background: linear-gradient(45deg, #e03e00, #ff4d4d);
+        }
+
+        .cart-section, .order-form {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cart-section h2, .order-form h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-methods label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .delivery-info {
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #ff4500;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #e03e00;
+        }
+
+        footer {
+            background -color: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Welcome Animation */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .welcome-icon {
+            font-size: 6rem;
+            color: #ff4500;
+            animation: bounce 1.2s infinite;
+        }
+
+        .welcome-text {
+            color: white;
+            font-size: 2rem;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .offline-message {
+            color: #ff4500;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* Rating System */
+        .rating {
+            margin: 0.75rem 0;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .rating .fa-star {
+            cursor: pointer;
+        }
+
+        /* Like System */
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #666;
+            margin: 0.5rem 0;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .like-btn.liked {
+            color: #ff4500;
+        }
+
+        .like-count {
+            font-size: 1rem;
+            color: #666;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .home-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        /* Tugmalar uchun umumiy animatsiya sozlamalari */
+.order-now-btn, .order-btn, .remove-btn, .like-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sichqoncha ustiga borganda */
+.order-now-btn:hover, .order-btn:hover {
+    transform: translateY(-5px) scale(1.05); /* 5px tepaga va biroz kattalashish */
+    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
+    filter: brightness(1.1); /* Rangni biroz yoritish */
+}
+
+/* Bosilgandagi effekt (Active) */
+.order-now-btn:active, .order-btn:active {
+    transform: translateY(-2px) scale(0.95);
+}
+
+/* Like tugmasi uchun maxsus effekt */
+.like-btn:hover {
+    transform: scale(1.2);
+    color: #ff4500;
+}
+
+/* Savatga qo'shilganda elementning silkiniishi uchun klass */
+@keyframes shake {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cart-animate {
+    animation: shake 0.4s ease-in-out;
+}
+    </style>
+</head>
+<body>
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <i class="fas fa-utensils welcome-icon"></i>
+        <div class="welcome-text">Shox Fast Food Restoraniga Xush Kelibsiz!</div>
+        <div class="offline-message" id="offlineMessage" style="display: none;">
+            Internet ulanmagan! Iltimos, internet aloqasini tekshiring.
+        </div>
+    </div>
+
+    <header>
+        <h1>Shox Fast Food Restorani</h1>
+        <p>Tez, mazali va sifatli taomlar siz uchun!</p>
+    </header>
+
+    <nav>
+        <a href="#home">Bosh sahifa</a>
+        <a href="#special">Bugungi taomlar</a>
+        <a href="#menu">Menyu</a>
+        <a href="#about">Biz haqimizda</a>
+        <a href="#cart">Savat</a>
+        <a href="#order">Buyurtma</a>
+        <a href="#contact">Aloqa</a>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="home-section">
+            <h2>Yozgi taomlar va salqin ichimliklar!</h2>
+            <p>50,000 so'mdan ortiq buyurtmalarda bepul yetkazib berish! Hozir buyurtma bering va mazali taomlarni sinab ko'ring.</p>
+            <button class="order-now-btn" onclick="window.location.href='#menu'">Hozir buyurtma berish</button>
+        </section>
+
+        <section id="special" class="special-offer">
+            <h2>Bugungi maxsus taomlar</h2>
+            <div class="menu-grid">
+                <div class="menu-item" data-item="spicy-wings">
+                    <img src="image/Spicy Chicken Wings.jpg" alt="Spicy Chicken Wings">
+                    <h3>Spicy Chicken Wings</h3>
+                    <p>Achchiq tovuq qanotlari, barbekyu sousi bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">48,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('spicy-wings')"><i class="far fa-heart"></i><span class="like-count" id="like-spicy-wings">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Spicy Chicken Wings', 48000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="tropical-bowl">
+                    <img src="image/Tropical Fruit Bowl.jpg" alt="Tropical Fruit Bowl">
+                    <h3>Tropical Fruit Bowl</h3>
+                    <p>Tropik mevalar, kokos yog'i va granola bilan</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">35,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('tropical-bowl')"><i class="far fa-heart"></i><span class="like-count" id="like-tropical-bowl">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Tropical Fruit Bowl', 35000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="pulled-pork">
+                    <img src="image/Pulled Pork Sandwich.jpg" alt="Pulled Pork Sandwich">
+                    <h3>Pulled Pork Sandwich</h3>
+                    <p>Tovuq go'shti, barbekyu sousi va salat bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">55,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('pulled-pork')"><i class="far fa-heart"></i><span class="like-count" id="like-pulled-pork">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Pulled Pork Sandwich', 55000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="loaded-nachos">
+                    <img src="image/Loaded Nachos.jpg" alt="Loaded Nachos">
+                    <h3>Loaded Nachos</h3>
+                    <p>Nachos, pishloq, salsa va guakamole bilan</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">45,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('loaded-nachos')"><i class="far fa-heart"></i><span class="like-count" id="like-loaded-nachos">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Loaded Nachos', 45000)">Savatga qo'shish</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu">
+            <h2>Bizning Menyu</h2>
+            <div class="menu-grid">
+                <div class="menu-item" data-item="burger">
+                    <img src="image/classic Burger.jpg" alt="Classic Burger">
+                    <h3>Classic Burger</h3>
+                    <p>Mol go'shti, pomidor, salat va maxsus sous</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">45,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('burger')"><i class="far fa-heart"></i><span class="like-count" id="like-burger">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Classic Burger', 45000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="pizza">
+                    <img src="image/peperonni pizza.jpg" alt="Pepperoni Pizza">
+                    <h3>Pepperoni Pizza</h3>
+                    <p>Pepperoni, pishloq va pomidor sousi</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">80,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('pizza')"><i class="far fa-heart"></i><span class="like-count" id="like-pizza">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Pepperoni Pizza', 80000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="fries">
+                    <img src="image/French Fries.jpg" alt="French Fries">
+                    <h3>French Fries</h3>
+                    <p>Qovurilgan kartoshka va ketchup</p>
+                    <div class="rating" data-rating="3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">20,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('fries')"><i class="far fa-heart"></i><span class="like-count" id="like-fries">0</span></button>
+                    <button class="order-btn" onclick="addToCart('French Fries', 20000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="chicken-wrap">
+                    <img src="image/chicken warp.jpg" alt="Chicken Wrap">
+                    <h3>Chicken Wrap</h3>
+                    <p>Tovuq, lavash, salat va yogurt sousi</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">35,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('chicken-wrap')"><i class="far fa-heart"></i><span class="like-count" id="like-chicken-wrap">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Chicken Wrap', 35000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="bbq-ribs">
+                    <img src="image/BBQ Ribs.jpg" alt="BBQ Ribs">
+                    <h3>BBQ Ribs</h3>
+                    <p>Barbekyu qovurg'asi, maxsus植物 bilan</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">75,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('bbq-ribs')"><i class="far fa-heart"></i><span class="like-count" id="like-bbq-ribs">0</span></button>
+                    <button class="order-btn" onclick="addToCart('BBQ Ribs', 75000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="caesar-salad">
+                    <img src="image/Caesar Salad.jpg" alt="Caesar Salad">
+                    <h3>Caesar Salad</h3>
+                    <p>Sezar salati, tovuq va kruton bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">40,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('caesar-salad')"><i class="far fa-heart"></i><span class="like-count" id="like-caesar-salad">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Caesar Salad', 40000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="veggie-burger">
+                    <img src="image/Veggie Burger.jpg" alt="Veggie Burger">
+                    <h3>Veggie Burger</h3>
+                    <p>Sabzavotli burger, no'xat kotleti bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">42,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('veggie-burger')"><i class="far fa-heart"></i><span class="like-count" id="like-veggie-burger">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Veggie Burger', 42000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="shrimp-tacos">
+                    <img src="image/Shrimp Tacos.jpg" alt="Shrimp Tacos">
+                    <h3>Shrimp Tacos</h3>
+                    <p>Krevetkali takos, salsa va salat bilan</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">50,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('shrimp-tacos')"><i class="far fa-heart"></i><span class="like-count" id="like-shrimp-tacos">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Shrimp Tacos', 50000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="double-cheeseburger">
+                    <img src="image/Double Cheeseburger.jpg" alt="Double Cheeseburger">
+                    <h3>Double Cheeseburger</h3>
+                    <p>Ikki qavatli burger, pishloq va maxsus sous bilan</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">60,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('double-cheeseburger')"><i class="far fa-heart"></i><span class="like-count" id="like-double-cheeseburger">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Double Cheeseburger', 60000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="fried-chicken">
+                    <img src="image/Fried Chicken Bucket.jpg" alt="Fried Chicken Bucket">
+                    <h3>Fried Chicken Bucket</h3>
+                    <p>Qovurilgan tovuq qismlari, sous bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">70,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('fried-chicken')"><i class="far fa-heart"></i><span class="like-count" id="like-fried-chicken">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Fried Chicken Bucket', 70000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="philly-cheesesteak">
+                    <img src="image/Philly Cheesesteak.jpg" alt="Philly Cheesesteak">
+                    <h3>Philly Cheesesteak</h3>
+                    <p>Mol go'shti, pishloq va piyozli sendvich</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">58,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('philly-cheesesteak')"><i class="far fa-heart"></i><span class="like-count" id="like-philly-cheesesteak">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Philly Cheesesteak', 58000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="ice-coffee">
+                    <img src="image/ice coffe.jpg" alt="Ice Coffee">
+                    <h3>Ice Coffee</h3>
+                    <p>Muzli kofe, sut va shakar siropi</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">25,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('ice-coffee')"><i class="far fa-heart"></i><span class="like-count" id="like-ice-coffee">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Ice Coffee', 25000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="lemonade">
+                    <img src="image/fresh lemonade.jpg" alt="Fresh Lemonade">
+                    <h3>Fresh Lemonade</h3>
+                    <p>Limon, yalpiz va muz bilan salqin limonad</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">15,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('lemonade')"><i class="far fa-heart"></i><span class="like-count" id="like-lemonade">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Fresh Lemonade', 15000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="mojito">
+                    <img src="image/vigin moxito.jpg" alt="Virgin Mojito">
+                    <h3>Virgin Mojito</h3>
+                    <p>Yalpiz, limon, soda va muz bilan alkogolsiz mojito</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">20,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('mojito')"><i class="far fa-heart"></i><span class="like-count" id="like-mojito">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Virgin Mojito', 20000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="smoothie">
+                    <img src="image/blueberry smoothie.jpg" alt="Berry Smoothie">
+                    <h3>Berry Smoothie</h3>
+                    <p>Qulupnay, malina, banan va yogurt</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">30,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('smoothie')"><i class="far fa-heart"></i><span class="like-count" id="like-smoothie">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Berry Smoothie', 30000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="mango-lassi">
+                    <img src="image/Mango Lassi.jpg" alt="Mango Lassi">
+                    <h3>Mango Lassi</h3>
+                    <p>Mango va yogurtli ichimlik</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">28,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('mango-lassi')"><i class="far fa-heart"></i><span class="like-count" id="like-mango-lassi">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Mango Lassi', 28000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="iced-tea">
+                    <img src="image/Iced Tea.jpg" alt="Iced Tea">
+                    <h3>Iced Tea</h3>
+                    <p>Muzli choy, limon va shakar bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">18,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('iced-tea')"><i class="far fa-heart"></i><span class="like-count" id="like-iced-tea">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Iced Tea', 18000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="watermelon-juice">
+                    <img src="image/Watermelon Juice.jpg" alt="Watermelon Juice">
+                    <h3>Watermelon Juice</h3>
+                    <p>Tarvuz sharbati, yalpiz bilan</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">22,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('watermelon-juice')"><i class="far fa-heart"></i><span class="like-count" id="like-watermelon-juice">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Watermelon Juice', 22000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="peach-iced-tea">
+                    <img src="image/Peach Iced Tea.jpg" alt="Peach Iced Tea">
+                    <h3>Peach Iced Tea</h3>
+                    <p>Shaftoli muzli choy</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">20,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('peach-iced-tea')"><i class="far fa-heart"></i><span class="like-count" id="like-peach-iced-tea">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Peach Iced Tea', 20000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="strawberry-milkshake">
+                    <img src="image/Strawberry Milkshake.jpg" alt="Strawberry Milkshake">
+                    <h3>Strawberry Milkshake</h3>
+                    <p>Qulupnayli sut kokteyli</p>
+                    <div class="rating" data-rating="5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price">32,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('strawberry-milkshake')"><i class="far fa-heart"></i><span class="like-count" id="like-strawberry-milkshake">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Strawberry Milkshake', 32000)">Savatga qo'shish</button>
+                </div>
+                <div class="menu-item" data-item="cucumber-cooler">
+                    <img src="image/Cucumber Cooler.jpg" alt="Cucumber Cooler">
+                    <h3>Cucumber Cooler</h3>
+                    <p>Bodring va yalpizli salqin ichimlik</p>
+                    <div class="rating" data-rating="4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">18,000 so'm</div>
+                    <button class="like-btn" onclick="toggleLike('cucumber-cooler')"><i class="far fa-heart"></i><span class="like-count" id="like-cucumber-cooler">0</span></button>
+                    <button class="order-btn" onclick="addToCart('Cucumber Cooler', 18000)">Savatga qo'shish</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2>Biz haqimizda</h2>
+            <p>Bizning Fast Food Restoran 2015-yildan beri Urganch tumanida eng mazali va sifatli taomlarni taqdim etib kelmoqda. Bizning maqsadimiz – mijozlarimizga tez xizmat, yangi ingredientlar va unutilmas ta'm tajribasini taqdim etish.</p>
+            <p>Biz har kuni yangi taomlar va salqin ichimliklar bilan menyumizni kengaytiramiz. Restoranimizda oilaviy muhit va qulay narxlar sizni kutmoqda!</p>
+            <p><strong>Manzil:</strong> Urganch tuman g'oybu</p>
+            <p><strong>Telefon:</strong> +998 71 123 45 67</p>
+            <p><strong>Email:</strong> ShoxFasFood@gmail.com</p>
+            <div class="social-links">
+                <a href="Shox_Fas_Food" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="shohrux_sotimboyev" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="shohrux_98_68" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
+        </section>
+
+        <section id="cart" class="cart-section">
+            <h2>Sizning Savatingiz</h2>
+            <div id="cart-items"></div>
+            <div class="form-group">
+                <label>Jami: <span id="total">0 so'm</span></label>
+            </div>
+            <div class="delivery-info" id="delivery-info">
+                Yetkazib berish: 10,000 so'm
+            </div>
+        </section>
+
+        <section id="order" class="order-form">
+            <h2>Buyurtma berish</h2>
+            <div class="form-group">
+                <label for="name">Ism:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Manzil:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label>To'lov usuli:</label>
+                <div class="payment-methods">
+                    <label><input type="radio" name="payment" value="cash" checked> Naqd</label>
+                    <label><input type="radio" name="payment" value="card"> Karta</label>
+                </div>
+            </div>
+            <button class="order-btn" onclick="submitOrder()">Buyurtmani yuborish</button>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <p>Biz bilan bog'lanish: +998 71 123 45 67</p>
+        <p>Email: ShoxFasFood@gmail.com</p>
+        <p>Manzil: Urganch Tumani</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let likes = {
+            'spicy-wings': 100, 'tropical-bowl': 1000, 'pulled-pork': 100, 'loaded-nachos': 1000,
+            'burger': 100, 'pizza': 1000, 'fries': 100, 'chicken-wrap': 1000, 'bbq-ribs': 100,
+            'caesar-salad': 1000, 'veggie-burger': 100, 'shrimp-tacos': 1000, 'double-cheeseburger': 100,
+            'fried-chicken': 1000, 'philly-cheesesteak': 100, 'ice-coffee': 1000, 'lemonade': 100,
+            'mojito': 1000, 'smoothie': 100, 'mango-lassi': 1000, 'iced-tea': 100, 'watermelon-juice': 1000,
+            'peach-iced-tea': 100, 'strawberry-milkshake': 1000, 'cucumber-cooler': 100
+        };
+        let likedItems = {
+            'spicy-wings': false, 'tropical-bowl': false, 'pulled-pork': false, 'loaded-nachos': false,
+            'burger': false, 'pizza': false, 'fries': false, 'chicken-wrap': false, 'bbq-ribs': false,
+            'caesar-salad': false, 'veggie-burger': false, 'shrimp-tacos': false, 'double-cheeseburger': false,
+            'fried-chicken': false, 'philly-cheesesteak': false, 'ice-coffee': false, 'lemonade': false,
+            'mojito': false, 'smoothie': false, 'mango-lassi': false, 'iced-tea': false, 'watermelon-juice': false,
+            'peach-iced-tea': false, 'strawberry-milkshake': false, 'cucumber-cooler': false
+        };
+
+        // Check internet connectivity and handle welcome animation
+        window.onload = function() {
+            const welcomeOverlay = document.getElementById('welcomeOverlay');
+            const offlineMessage = document.getElementById('offlineMessage');
+
+            if (!navigator.onLine) {
+                offlineMessage.style.display = 'block';
+                welcomeOverlay.style.animation = 'none'; // Prevent fade-out
+            } else {
+                setTimeout(() => {
+                    welcomeOverlay.style.display = 'none';
+                }, 4000);
+            }
+
+            // Update online/offline status
+            window.addEventListener('online', () => {
+                offlineMessage.style.display = 'none';
+                setTimeout(() => {
+                    welcomeOverlay.style.display = 'none';
+                }, 1000);
+            });
+
+            window.addEventListener('offline', () => {
+                offlineMessage.style.display = 'block';
+                welcomeOverlay.style.display = 'flex';
+                welcomeOverlay.style.animation = 'none';
+            });
+
+            // Initialize likes display
+            Object.keys(likes).forEach(item => {
+                const likeCountElement = document.getElementById(`like-${item}`);
+                if (likeCountElement) {
+                    likeCountElement.textContent = likes[item];
+                }
+            });
+
+            // Add event listeners for rating stars
+            document.querySelectorAll('.rating .fa-star').forEach(star => {
+                star.addEventListener('click', function() {
+                    const ratingDiv = this.parentElement;
+                    const menuItem = ratingDiv.closest('.menu-item');
+                    const item = menuItem.dataset.item;
+                    const newRating = Array.from(ratingDiv.children).indexOf(this) + 1;
+                    updateRating(item, newRating);
+                });
+            });
+        };
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            updateCartDisplay();
+            alert(`${itemName} savatga qo'shildi!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span>${item.name} - ${item.price.toLocaleString()} so'm</span>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">O'chirish</button>
+                `;
+                cartItems.appendChild(div);
+            });
+
+            document.getElementById('total').textContent = `${total.toLocaleString()} so'm`;
+            
+            // Update delivery info
+            const deliveryInfo = document.getElementById('delivery-info');
+            if (total >= 50000) {
+                deliveryInfo.textContent = 'Bepul yetkazib berish!';
+                deliveryInfo.style.color = '#28a745';
+            } else {
+                deliveryInfo.textContent = 'Yetkazib berish: 10,000 so\'m';
+                deliveryInfo.style.color = '#ff4500';
+            }
+        }
+
+        function toggleLike(item) {
+            const likeBtn = document.querySelector(`.menu-item[data-item="${item}"] .like-btn`);
+            if (!likedItems[item]) {
+                likes[item]++;
+                likedItems[item] = true;
+                likeBtn.classList.add('liked');
+                likeBtn.querySelector('i').classList.replace('far', 'fas');
+            } else {
+                likes[item]--;
+                likedItems[item] = false;
+                likeBtn.classList.remove('liked');
+                likeBtn.querySelector('i').classList.replace('fas', 'far');
+            }
+            document.getElementById(`like-${item}`).textContent = likes[item];
+        }
+
+        function updateRating(item, rating) {
+            const ratingDiv = document.querySelector(`.menu-item[data-item="${item}"] .rating`);
+            ratingDiv.setAttribute('data-rating', rating);
+            const stars = ratingDiv.querySelectorAll('.fa-star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const deliveryFee = total >= 50000 ? 0 : 10000;
+
+            if (!name || !phone || !address || cart.length === 0) {
+                alert('Iltimos, barcha maydonlarni to\'ldiring va kamida bitta mahsulot tanlang!');
+                return;
+            }
+
+            alert(`Buyurtma muvaffaqiyatli yuborildi!\nIsm: ${name}\nTelefon: ${phone}\nManzil: ${address}\nMahsulotlar: ${cart.map(item => item.name).join(', ')}\nTo'lov usuli: ${paymentMethod === 'cash' ? 'Naqd' : 'Karta'}\nJami: ${total.toLocaleString()} so'm\nYetkazib berish: ${deliveryFee === 0 ? 'Bepul' : '10,000 so\'m'}`);
+            cart = [];
+            updateCartDisplay();
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
+            document.querySelector('input[name="payment"][value="cash"]').checked = true;
+        }
+    </script>
+</body>
+</html>d,ko0unh9yj
