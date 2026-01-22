@@ -5,417 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shox Fast Food Restorani</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-        }
-
-        header {
-            background: linear-gradient(45deg, #ff4500, #ff6b6b);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        nav {
-            background-color: #2d2d2d;
-            padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ff4500;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem;
-        }
-        
-
-        /* Home Section */
-        .home-section {
-            background: url('image/FastFood1.jpg') no-repeat center/cover;
-            padding: 5rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            position: relative;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .home-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            border-radius: 15px;
-        }
-
-        .home-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-section p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-section .order-now-btn {
-            background: linear-gradient(45deg, #ff4500, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-section .order-now-btn:hover {
-            background: linear-gradient(45deg, #e03e00, #ff4d4d);
-        }
-
-        .special-offer, .about-section {
-            background-color: #fff3e0;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .special-offer h2, .about-section h2 {
-            color: #ff4500;
-            margin-bottom: 1rem;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin: 3rem 0;
-        }
-
-        .menu-item {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .menu-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .menu-item h3 {
-            margin: 1rem 0;
-            color: #333;
-            font-size: 1.5rem;
-        }
-
-        .menu-item p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            color: #ff4500;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin: 0.5rem 0;
-        }
-
-        .order-btn {
-            background: linear-gradient(45deg, #ff4500, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-            transition: background 0.3s;
-        }
-
-        .order-btn:hover {
-            background: linear-gradient(45deg, #e03e00, #ff4d4d);
-        }
-
-        .cart-section, .order-form {
-            background-color: white;
-            padding: 3rem;
-            border-radius: 15px;
-            margin: 3rem 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .cart-section h2, .order-form h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .remove-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .payment-methods {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .payment-methods label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .delivery-info {
-            color: #28a745;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .about-section p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            color: #ff4500;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #e03e00;
-        }
-
-        footer {
-            background -color: #2d2d2d;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* Welcome Animation */
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .welcome-icon {
-            font-size: 6rem;
-            color: #ff4500;
-            animation: bounce 1.2s infinite;
-        }
-
-        .welcome-text {
-            color: white;
-            font-size: 2rem;
-            margin-top: 1rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .offline-message {
-            color: #ff4500;
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            text-align: center;
-            max-width: 80%;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-25px); }
-        }
-
-        /* Rating System */
-        .rating {
-            margin: 0.75rem 0;
-            color: #ffd700;
-            font-size: 1.2rem;
-        }
-
-        .rating .fa-star {
-            cursor: pointer;
-        }
-
-        /* Like System */
-        .like-btn {
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: #666;
-            margin: 0.5rem 0;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .like-btn.liked {
-            color: #ff4500;
-        }
-
-        .like-count {
-            font-size: 1rem;
-            color: #666;
-            margin-left: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .home-section h2 {
-                font-size: 1.8rem;
-            }
-
-            .container {
-                padding: 1.5rem;
-            }
-
-            .cart-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-        /* Tugmalar uchun umumiy animatsiya sozlamalari */
-.order-now-btn, .order-btn, .remove-btn, .like-btn {
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Sichqoncha ustiga borganda */
-.order-now-btn:hover, .order-btn:hover {
-    transform: translateY(-5px) scale(1.05); /* 5px tepaga va biroz kattalashish */
-    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
-    filter: brightness(1.1); /* Rangni biroz yoritish */
-}
-
-/* Bosilgandagi effekt (Active) */
-.order-now-btn:active, .order-btn:active {
-    transform: translateY(-2px) scale(0.95);
-}
-
-/* Like tugmasi uchun maxsus effekt */
-.like-btn:hover {
-    transform: scale(1.2);
-    color: #ff4500;
-}
-
-/* Savatga qo'shilganda elementning silkiniishi uchun klass */
-@keyframes shake {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.cart-animate {
-    animation: shake 0.4s ease-in-out;
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div class="welcome-overlay" id="welcomeOverlay">
@@ -426,12 +17,16 @@
         </div>
     </div>
 
-    <header>
+   <header>
+    <div class="header-bg"></div>
+    <div class="header-content">
         <h1>Shox Fast Food Restorani</h1>
         <p>Tez, mazali va sifatli taomlar siz uchun!</p>
-    </header>
+    </div>
+</header>
 
     <nav>
+        <div class="left">
         <a href="#home">Bosh sahifa</a>
         <a href="#special">Bugungi taomlar</a>
         <a href="#menu">Menyu</a>
@@ -439,6 +34,7 @@
         <a href="#cart">Savat</a>
         <a href="#order">Buyurtma</a>
         <a href="#contact">Aloqa</a>
+        </div>
     </nav>
 
     <div class="container">
@@ -890,166 +486,31 @@
         <p>Email: ShoxFasFood@gmail.com</p>
         <p>Manzil: Urganch Tumani</p>
     </footer>
-
+    <script src="script.js"></script>
     <script>
-        let cart = [];
-        let likes = {
-            'spicy-wings': 100, 'tropical-bowl': 1000, 'pulled-pork': 100, 'loaded-nachos': 1000,
-            'burger': 100, 'pizza': 1000, 'fries': 100, 'chicken-wrap': 1000, 'bbq-ribs': 100,
-            'caesar-salad': 1000, 'veggie-burger': 100, 'shrimp-tacos': 1000, 'double-cheeseburger': 100,
-            'fried-chicken': 1000, 'philly-cheesesteak': 100, 'ice-coffee': 1000, 'lemonade': 100,
-            'mojito': 1000, 'smoothie': 100, 'mango-lassi': 1000, 'iced-tea': 100, 'watermelon-juice': 1000,
-            'peach-iced-tea': 100, 'strawberry-milkshake': 1000, 'cucumber-cooler': 100
-        };
-        let likedItems = {
-            'spicy-wings': false, 'tropical-bowl': false, 'pulled-pork': false, 'loaded-nachos': false,
-            'burger': false, 'pizza': false, 'fries': false, 'chicken-wrap': false, 'bbq-ribs': false,
-            'caesar-salad': false, 'veggie-burger': false, 'shrimp-tacos': false, 'double-cheeseburger': false,
-            'fried-chicken': false, 'philly-cheesesteak': false, 'ice-coffee': false, 'lemonade': false,
-            'mojito': false, 'smoothie': false, 'mango-lassi': false, 'iced-tea': false, 'watermelon-juice': false,
-            'peach-iced-tea': false, 'strawberry-milkshake': false, 'cucumber-cooler': false
-        };
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('nav');
+    const navbarOffset = navbar.offsetTop; // Navbarni boshlang'ich o'rnini aniqlash
 
-        // Check internet connectivity and handle welcome animation
-        window.onload = function() {
-            const welcomeOverlay = document.getElementById('welcomeOverlay');
-            const offlineMessage = document.getElementById('offlineMessage');
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if (!navigator.onLine) {
-                offlineMessage.style.display = 'block';
-                welcomeOverlay.style.animation = 'none'; // Prevent fade-out
+        // Navbar o'z joyidan o'tib ketganidan keyin mantiq ishlaydi
+        if (scrollTop > navbarOffset) {
+            if (scrollTop > lastScrollTop) {
+                // Pastga skroll
+                navbar.classList.add('nav-hidden');
             } else {
-                setTimeout(() => {
-                    welcomeOverlay.style.display = 'none';
-                }, 4000);
+                // Tepaga skroll
+                navbar.classList.remove('nav-hidden');
             }
-
-            // Update online/offline status
-            window.addEventListener('online', () => {
-                offlineMessage.style.display = 'none';
-                setTimeout(() => {
-                    welcomeOverlay.style.display = 'none';
-                }, 1000);
-            });
-
-            window.addEventListener('offline', () => {
-                offlineMessage.style.display = 'block';
-                welcomeOverlay.style.display = 'flex';
-                welcomeOverlay.style.animation = 'none';
-            });
-
-            // Initialize likes display
-            Object.keys(likes).forEach(item => {
-                const likeCountElement = document.getElementById(`like-${item}`);
-                if (likeCountElement) {
-                    likeCountElement.textContent = likes[item];
-                }
-            });
-
-            // Add event listeners for rating stars
-            document.querySelectorAll('.rating .fa-star').forEach(star => {
-                star.addEventListener('click', function() {
-                    const ratingDiv = this.parentElement;
-                    const menuItem = ratingDiv.closest('.menu-item');
-                    const item = menuItem.dataset.item;
-                    const newRating = Array.from(ratingDiv.children).indexOf(this) + 1;
-                    updateRating(item, newRating);
-                });
-            });
-        };
-
-        function addToCart(itemName, price) {
-            cart.push({ name: itemName, price: price });
-            updateCartDisplay();
-            alert(`${itemName} savatga qo'shildi!`);
+        } else {
+            // Header qismida turganda navbar ko'rinib turadi
+            navbar.classList.remove('nav-hidden');
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartDisplay();
-        }
-
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            cartItems.innerHTML = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                total += item.price;
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <span>${item.name} - ${item.price.toLocaleString()} so'm</span>
-                    <button class="remove-btn" onclick="removeFromCart(${index})">O'chirish</button>
-                `;
-                cartItems.appendChild(div);
-            });
-
-            document.getElementById('total').textContent = `${total.toLocaleString()} so'm`;
-            
-            // Update delivery info
-            const deliveryInfo = document.getElementById('delivery-info');
-            if (total >= 50000) {
-                deliveryInfo.textContent = 'Bepul yetkazib berish!';
-                deliveryInfo.style.color = '#28a745';
-            } else {
-                deliveryInfo.textContent = 'Yetkazib berish: 10,000 so\'m';
-                deliveryInfo.style.color = '#ff4500';
-            }
-        }
-
-        function toggleLike(item) {
-            const likeBtn = document.querySelector(`.menu-item[data-item="${item}"] .like-btn`);
-            if (!likedItems[item]) {
-                likes[item]++;
-                likedItems[item] = true;
-                likeBtn.classList.add('liked');
-                likeBtn.querySelector('i').classList.replace('far', 'fas');
-            } else {
-                likes[item]--;
-                likedItems[item] = false;
-                likeBtn.classList.remove('liked');
-                likeBtn.querySelector('i').classList.replace('fas', 'far');
-            }
-            document.getElementById(`like-${item}`).textContent = likes[item];
-        }
-
-        function updateRating(item, rating) {
-            const ratingDiv = document.querySelector(`.menu-item[data-item="${item}"] .rating`);
-            ratingDiv.setAttribute('data-rating', rating);
-            const stars = ratingDiv.querySelectorAll('.fa-star');
-            stars.forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.remove('far');
-                    star.classList.add('fas');
-                } else {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                }
-            });
-        }
-
-        function submitOrder() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            const deliveryFee = total >= 50000 ? 0 : 10000;
-
-            if (!name || !phone || !address || cart.length === 0) {
-                alert('Iltimos, barcha maydonlarni to\'ldiring va kamida bitta mahsulot tanlang!');
-                return;
-            }
-
-            alert(`Buyurtma muvaffaqiyatli yuborildi!\nIsm: ${name}\nTelefon: ${phone}\nManzil: ${address}\nMahsulotlar: ${cart.map(item => item.name).join(', ')}\nTo'lov usuli: ${paymentMethod === 'cash' ? 'Naqd' : 'Karta'}\nJami: ${total.toLocaleString()} so'm\nYetkazib berish: ${deliveryFee === 0 ? 'Bepul' : '10,000 so\'m'}`);
-            cart = [];
-            updateCartDisplay();
-            document.getElementById('name').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('address').value = '';
-            document.querySelector('input[name="payment"][value="cash"]').checked = true;
-        }
-    </script>
+        lastScrollTop = scrollTop;
+    });
+</script>
 </body>
-</html>d,ko0unh9yj
+</html> 

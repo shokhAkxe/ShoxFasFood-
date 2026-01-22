@@ -1,0 +1,504 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+      header {
+    height: 200px;
+    background: linear-gradient(-45deg, #FF4500, #ff6b6b, #D2691E);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+/* Matnlarni paydo bo'lish animatsiyasi */
+header h1 {
+    font-size: 3.5rem; /* Sarlavhani kattaroq qildik */
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSlideUp 2.5s ease-out forwards;
+}
+
+header p {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSlideUp 2.5s ease-out 0.2s forwards; /* 0.4s kechikish bilan chiqadi */
+}
+
+/* 1-Animatsiya: Matnlar uchun */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2-Animatsiya: Fon rangi harakati uchun */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+        nav {
+            background-color: #2d2d2d;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4500;
+        }
+        .left{
+            margin-left: 200px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+        header {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f8f8; /* Header foni */
+}
+
+nav {
+    background-color: #2d2d2d;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+    /* Sticky va Animatsiya */
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;               
+    z-index: 1000;
+    transition: transform 0.8s ease-in-out; 
+}
+
+/* Yashirish klassi - bu JS orqali qo'shiladi */
+.nav-hidden {
+    transform: translateY(-110%);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff4500;
+}
+
+.left {
+    margin-left: 200px;
+}
+
+        /* Home Section */
+        .home-section {
+            background: url('image/FastFood1.jpg') no-repeat center/cover;
+            padding: 5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .home-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+        }
+
+        .home-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section .order-now-btn {
+            background: linear-gradient(45deg, #ff4500, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-section .order-now-btn:hover {
+            background: linear-gradient(45deg, #e03e00, #ff4d4d);
+        }
+
+        .special-offer, .about-section {
+            background-color: #fff3e0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .special-offer h2, .about-section h2 {
+            color: #ff4500;
+            margin-bottom: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            margin: 1rem 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .order-btn {
+            background: linear-gradient(45deg, #ff4500, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .order-btn:hover {
+            background: linear-gradient(45deg, #e03e00, #ff4d4d);
+        }
+
+        .cart-section, .order-form {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cart-section h2, .order-form h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-methods label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .delivery-info {
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #ff4500;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #e03e00;
+        }
+
+        footer {
+            background -color: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Welcome Animation */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .welcome-icon {
+            font-size: 6rem;
+            color: #ff4500;
+            animation: bounce 1.2s infinite;
+        }
+
+        .welcome-text {
+            color: white;
+            font-size: 2rem;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .offline-message {
+            color: #ff4500;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* Rating System */
+        .rating {
+            margin: 0.75rem 0;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .rating .fa-star {
+            cursor: pointer;
+        }
+
+        /* Like System */
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #666;
+            margin: 0.5rem 0;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .like-btn.liked {
+            color: #ff4500;
+        }
+
+        .like-count {
+            font-size: 1rem;
+            color: #666;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .home-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        /* Tugmalar uchun umumiy animatsiya sozlamalari */
+.order-now-btn, .order-btn, .remove-btn, .like-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sichqoncha ustiga borganda */
+.order-now-btn:hover, .order-btn:hover {
+    transform: translateY(-5px) scale(1.05); /* 5px tepaga va biroz kattalashish */
+    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
+    filter: brightness(1.1); /* Rangni biroz yoritish */
+}
+
+/* Bosilgandagi effekt (Active) */
+.order-now-btn:active, .order-btn:active {
+    transform: translateY(-2px) scale(0.95);
+}
+
+/* Like tugmasi uchun maxsus effekt */
+.like-btn:hover {
+    transform: scale(1.2);
+    color: #ff4500;
+}
+
+/* Savatga qo'shilganda elementning silkiniishi uchun klass */
+@keyframes shake {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cart-animate {
+    animation: shake 0.4s ease-in-out;
+}
+.site-header {
+    position: fixed;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: 0.5s;
+    border-bottom: 1px solid transparent;
+}
+
+.site-header.sticky_head {
+    background: rgb(255 255 255 / 80%);
+    padding: 20px 0;
+    border-color: #f2f2f2;
+    backdrop-filter: blur(20px);
+}
