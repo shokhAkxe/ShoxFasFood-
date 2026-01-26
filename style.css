@@ -1,5 +1,20 @@
+       /* 1. Tugma uchun asosiy stil */
+.clear-history-btn, .checkout-btn, .order-now-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
 
-        * {
+/* 2. SAPCHISH ANIMATSIYASI (Hover) */
+.clear-history-btn:hover, .checkout-btn:hover, .order-now-btn:hover {
+    transform: translateY(-5px) scale(1.05) !important; /* Tepaga sapchish va kattalashish */
+    filter: brightness(1.2) !important; /* Biroz yorishish */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; /* Soya tushishi */
+}
+
+/* 3. Bosilganda (Active) */
+.clear-history-btn:active, .checkout-btn:active {
+    transform: translateY(0px) scale(0.95) !important; /* Bosilganda biroz kirishish */
+}
+       * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -345,13 +360,12 @@ nav a:hover {
         }
 
         footer {
-            background -color: #2d2d2d;
+            background-color: #2d2d2d;
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
         }
-
         /* Welcome Animation */
         .welcome-overlay {
             position: fixed;
@@ -501,4 +515,306 @@ nav a:hover {
     padding: 20px 0;
     border-color: #f2f2f2;
     backdrop-filter: blur(20px);
+    /* Yulduzchalar uchun rang va bosish stili */
+.rating .fa-star {
+    cursor: pointer !important;
+    color: #ccc; /* Odatiy rang (kulrang) */
+    font-size: 1.2rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+/* Tanlangan (bosilgan) yulduzchalar rangi */
+.rating .fa-star.fas, 
+.rating .fa-star.active {
+    color: #ffd700 !important; /* Sariq rang */
+}
+
+/* Ustiga borganda biroz kattalashishi uchun */
+.rating .fa-star:hover {
+    transform: scale(1.2);
+}
+/* Banner uchun maxsus sapchish animatsiyasi */
+@keyframes pulseJump {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    50% {
+        transform: scale(1.02); /* Biroq oldinga sapchish */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+}
+
+/* Banner konteyneriga animatsiyani biriktiramiz */
+.promo-banner { /* HTML-dagi banner klasini tekshiring, agar nomi boshqa bo'lsa o'zgartiring */
+    overflow: hidden;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    animation: pulseJump 4s ease-in-out infinite; /* To'xtovsiz sapchib turadi */
+}
+
+/* Sichqoncha ustiga borganda animatsiya tezlashishi yoki to'xtashi mumkin */
+.promo-banner:hover {
+    animation-play-state: paused; /* Ustiga borganda to'xtaydi */
+    transform: scale(1.03); /* Biroz kattalashadi */
+    cursor: pointer;
+}
+
+/* Banner ichidagi yozuvlar uchun alohida effekt */
+.promo-banner h2 {
+    animation: slideInText 2s ease-out;
+}
+
+@keyframes slideInText {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* 1. Sapchish animatsiyasi ta'rifi */
+@keyframes jumpEffect {
+    0% {
+        transform: scale(1); /* Oddiy holat */
+    }
+    50% {
+        transform: scale(1.03) translateY(-5px); /* Biroz oldinga va tepaga sapchish */
+    }
+    100% {
+        transform: scale(1); /* Joyiga qaytish */
+    }
+}
+
+/* 2. Animatsiyani home-section bo'limiga qo'llash */
+.home-section {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* Animatsiya nomi, davomiyligi (4s), ravonligi va cheksiz qaytarilishi */
+    animation: jumpEffect 5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 3. Sichqoncha ustiga borganda animatsiya to'xtab, biroz kattalashib turishi uchun */
+.home-section:hover {
+    animation-play-state: paused; /* Animatsiya to'xtaydi */
+    transform: scale(1.04); /* Kattaroq ko'rinadi */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* 4. Tugma uchun alohida e'tibor tortuvchi effekt */
+.order-now-btn {
+    transition: all 0.3s ease;
+}
+
+.order-now-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    background: #ff6b6b;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+@keyframes jumpAndChange {
+    0%, 100% { 
+        transform: scale(1); 
+        background-image: url('image/DoubleCheeseBurger.jpg'); /* Boshlang'ich rasm */
+    }
+    25% { 
+        transform: scale(1.05); /* Oldinga sapchish */
+    }
+    50% { 
+        transform: scale(1); 
+        background-image: url('image/taom2.jpg'); /* Rasm almashishi */
+    }
+    75% { 
+        transform: scale(1.05); /* Yana bir bor sapchish */
+    }
+}
+
+.home-section {
+    animation: jumpAndChange 10s infinite ease-in-out;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}/* 1. Savatga qo'shish tugmasi (Sariq/To'q sariq) */
+.order-btn {
+    background-color: #ff9f43 !important; /* To'q sariq */
+    color: white !important;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 2. O'chirish tugmasi (Qizil) */
+.remove-btn {
+    background-color: #ee5253 !important; /* Qizil */
+    color: white !important;
+    border: none !important;
+    padding: 5px 10px !important;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 3. Savatni tozalash (Bekor qilish) tugmasi (Kulrang) */
+.clear-cart-btn {
+    background-color: #ff4d4d !important; /* To'q kulrang */
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 4. Bannerdagi "Hozir buyurtma berish" tugmasi (Yashil/Yorqin) */
+.order-now-btn {
+    background-color: #10ac84 !important; /* Zumrad yashil */
+    color: white !important;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+/* Savat bo'limidagi tugmalar konteyneri */
+.cart-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Savatchani tozalash tugmasi (Kulrang) */
+.clear-cart-btn {
+    background-color: #6c757d !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Rasmiylashtirish tugmasi (To'q sariq/Qizil) */
+.checkout-btn {
+    background-color: #ff4500 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.clear-cart-btn:hover, .checkout-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+/* Rasmdagi kabi yorqin qizil-to'q sariq gradient */
+.order-now-btn, .checkout-btn, .order-btn {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 25px !important;
+    border-radius: 50px !important; /* Yumaloq shakl */
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+    transition: all 0.3s ease !important;
+}
+
+/* Sichqoncha ustiga borgandagi animatsiya */
+.order-now-btn:hover, .checkout-btn:hover, .order-btn:hover {
+    transform: translateY(-4px) scale(1.05) !important; /* Tepaga sapchiydi */
+    box-shadow: 0 8px 25px rgba(255, 75, 43, 0.6) !important;
+    filter: brightness(1.1);
+}
+
+/* Savatchani tozalash uchun moviy gradient */
+.clear-cart-btn {
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 50px !important;
+    transition: 0.3s;
+}
+
+.clear-cart-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+.badge-payment {
+    padding: 4px 8px;
+    background-color: #f1f2f6;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2f3542;
+    border: 1px solid #ced4da;
+    white-space: nowrap;
+}
+
+#history-body td {
+    padding: 10px;
+    vertical-align: middle;
+}
+/* "Qora chiziq" va rang muammosini hal qiluvchi stil */
+.clear-history-btn {
+    all: unset !important; /* Tugmaning barcha standart (qora chiziq) stillarini o'chiradi */
+    
+    background: #2c3e50 !important; /* Standart to'q rang (agar gradient ishlamasa) */
+    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%) !important;
+    
+    color: #ffffff !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-family: sans-serif !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    transition: 0.3s all ease !important;
+    border: none !important; /* Qora chiziqni yo'qotadi */
+    outline: none !important; /* Bosgandagi chiziqni yo'qotadi */
+}
+
+/* Sichqoncha borganda sapchishi */
+.clear-history-btn:hover {
+    transform: translateY(-3px) !important;
+    filter: brightness(1.2) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+}
+/* Tarixni tozalash tugmasini majburan chiroyli qilish */
+.clear-history-btn {
+    all: unset !important; /* Brauzerning barcha standart qora chiziqlarini o'chiradi */
+    
+    /* Rasmdagi kabi to'q sariq-qizil gradient */
+    background: linear-gradient(135deg, #ff5f6d, #ffc371) !important;
+    
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-family: sans-serif !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(255, 95, 109, 0.3) !important;
+}
+
+/* Sichqoncha ustiga borganda animatsiya */
+.clear-history-btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 6px 15px rgba(255, 95, 109, 0.5) !important;
+    filter: brightness(1.1) !important;
+}
+
 }

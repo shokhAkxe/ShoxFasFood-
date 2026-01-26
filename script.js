@@ -53,16 +53,46 @@ window.onload = function() {
     });
 
     // Add event listeners for rating stars
-    document.querySelectorAll('.rating .fa-star').forEach(star => {
-        star.addEventListener('click', function() {
+   // Barcha yulduzchalar uchun (hatto yangi yaratilganlari uchun ham)
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('fa-star')) {
+        const star = e.target;
+        const ratingDiv = star.parentElement;
+        const menuItem = star.closest('.menu-item');
+        const itemName = menuItem.querySelector('h3').textContent; // Taom nomini olamiz
+        
+        const stars = ratingDiv.querySelectorAll('.fa-star');
+        const newRating = Array.from(stars).indexOf(star) + 1;
+
+        // 1. EKRANDA DARHOL KO'RSATISH
+        stars.forEach((s, i) => {
+            if (i < newRating) {
+                s.classList.add('fas', 'active');
+                s.classList.remove('far');
+            } else {
+                s.classList.add('far');
+                s.classList.remove('fas', 'active');
+            }
+        });
+
+        // 2. MASSIVDAGI (DATA) QIYMATNI YANGILASH (ENG MUHIM JOYI!)
+        // Bu kod menus ichidagi ratingni o'zgartiradi, shunda 7 soniyadan keyin o'chib ketmaydi
+        menus.forEach(menuGroup => {
+            const food = menuGroup.find(f => f.name === itemName);
+            if (food) {
+                food.rating = newRating; // Yangi bahoni massivga saqlaymiz
+            }
+        });
+        
+        console.log(`${itemName} uchun yangi baho ${newRating} saqlandi.`);
+    }
+});
             const ratingDiv = this.parentElement;
             const menuItem = ratingDiv.closest('.menu-item');
             const item = menuItem.dataset.item;
             const newRating = Array.from(ratingDiv.children).indexOf(this) + 1;
             updateRating(item, newRating);
-        });
-    });
-};
+        };
 
 function addToCart(itemName, price) {
     cart.push({ name: itemName, price: price });
@@ -136,44 +166,108 @@ function updateRating(item, rating) {
 }
 
 function submitOrder() {
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const deliveryFee = total >= 50000 ? 0 : 10000;
+    const nameEl = document.getElementById('name');
+    const phoneEl = document.getElementById('phone');
+    const addressEl = document.getElementById('address');
+    const paymentEl = document.querySelector('input[name="payment"]:checked');
 
-    if (!name || !phone || !address || cart.length === 0) {
-        alert('Iltimos, barcha maydonlarni to\'ldiring va kamida bitta mahsulot tanlang!');
+    // Filtrlash: Ismga faqat harf, telefonga faqat raqam (agar inputda pattern bo'lsa ham bu qo'shimcha himoya)
+    const cleanName = nameEl.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+    const cleanPhone = phoneEl.value.replace(/[^0-9]/g, '');
+
+    if (!cleanName || !cleanPhone || !addressEl.value || !paymentEl || cart.length === 0) {
+        alert('Iltimos, barcha maydonlarni to\'g\'ri to\'ldiring (Ismga faqat harf, telefonga faqat raqam)!');
         return;
     }
 
-    alert(`Buyurtma muvaffaqiyatli yuborildi!\nIsm: ${name}\nTelefon: ${phone}\nManzil: ${address}\nMahsulotlar: ${cart.map(item => item.name).join(', ')}\nTo'lov usuli: ${paymentMethod === 'cash' ? 'Naqd' : 'Karta'}\nJami: ${total.toLocaleString()} so'm\nYetkazib berish: ${deliveryFee === 0 ? 'Bepul' : '10,000 so\'m'}`);
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const deliveryFee = total >= 50000 ? 0 : 10000;
+    const payTypeText = paymentEl.value === 'cash' ? '💵 Naqd' : '💳 Karta';
+
+const newOrder = {
+    id: Date.now(),
+    // Mana bu qism 24 soatlik formatni ta'minlaydi:
+    date: new Date().toLocaleString('ru-RU', { 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit', 
+        hour: '2-digit', 
+        minute: '2-digit',  
+        hour12: false 
+    }),
+    customerName: cleanName,
+    customerPhone: cleanPhone,
+    customerAddress: addressEl.value,
+    paymentType: payTypeText,
+    items: cart.map(item => item.name).join(', '),
+    total: total + deliveryFee
+};
+
+    try {
+        let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        orderHistory.push(newOrder);
+        localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+    } catch (e) {
+        console.error("Saqlashda xato:", e);
+    }
+
+    alert(`Buyurtma qabul qilindi!`);
+
     cart = [];
-    updateCartDisplay();
-    document.getElementById('name').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('address').value = '';
-    document.querySelector('input[name="payment"][value="cash"]').checked = true;
+    if (typeof updateCartDisplay === "function") updateCartDisplay();
+    renderOrderHistory(); 
+    
+    // Formani tozalash
+    nameEl.value = '';
+    phoneEl.value = '';
+    addressEl.value = '';
+}
+
+function renderOrderHistory() {
+    const historyTable = document.getElementById('history-body');
+    if (!historyTable) return;
+
+    const data = localStorage.getItem('orderHistory');
+    let orderHistory = data ? JSON.parse(data) : [];
+    
+    historyTable.innerHTML = '';
+
+    // Yangi buyurtmalar tepada ko'rinishi uchun reverse() qilingan
+    [...orderHistory].reverse().forEach((order, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${order.date}</td>
+            <td>${order.customerName}</td>
+            <td>${order.customerPhone}</td> 
+            <td>${order.customerAddress}</td>
+            <td>${order.items}</td>
+            <td><span class="badge-payment">${order.paymentType}</span></td>
+            <td><strong>${order.total.toLocaleString()} so'm</strong></td>
+        `;
+        historyTable.appendChild(row);
+    });
 }
 const menus = [
     [
-        { name: "Classic Burger", price: 45000, img: "image/classic Burger.jpg", desc: "Mol go'shti, pomidor, salat va maxsus sous", likes: 100, rating: 4 },
+        { name: "Classic Burger", price: 45000, img: "image/classic Burger.jpg", desc: "Mol go'shti, pomidor, salat va maxsus sous", likes: 100, rating: 5 },
         { name: "Peperoni Pizza", price: 80000, img: "image/peperonni pizza.jpg", desc: "Pepperoni, pishloq va pomidor sousi", likes: 1000, rating: 5 },
-        { name: "French Fries", price: 20000, img: "image/French Fries.jpg", desc: "Qovurilgan kartoshka va ketchup", likes: 100, rating: 3 }
+        { name: "French Fries", price: 20000, img: "image/French Fries.jpg", desc: "Qovurilgan kartoshka va ketchup", likes: 100, rating: 5 },
     ],
     [
-        { name: "Chicken Wrap", price: 35000, img: "image/chicken warp.jpg", desc: "Tovuq, lavash, salat va yogurt sousi", likes: 1000, rating: 4 },
+        { name: "Chicken Wrap", price: 35000, img: "image/chicken warp.jpg", desc: "Tovuq, lavash, salat va yogurt sousi", likes: 1000, rating: 5 },
         { name: "BBQ Ribs", price: 75000, img: "image/BBQ Ribs.jpg", desc: "Barbekyu qovurg'asi, maxsus sous bilan", likes: 100, rating: 5 },
         { name: "Veggie Burger", price: 42000, img: "image/Veggie Burger.jpg", desc:"Sabzavotli burger, no'xat kotleti bilan", likes: 100, rating: 5 },
     ],
     [
-        { name: "Shrimp Tacos", price: 50000, img: "image/Shrimp Tacos.jpg", desc: "Krevetkali takos, salsa va salat bilan", likes: 1000,vrating: 2 },
-        { name: "Double Cheeseburger", price: 60000, img: "image/Double Cheeseburger.jpg", desc: "Ikki qavatli burger, pishloq va maxsus sous bilan", likes: 100, rating: 1 },
-        { name: "Fried Chicken Bucket", price: 70000, img: "image/Fried Chicken Bucket.jpg", desc: " Qovurilgan tovuq qisimlari,sous bilan", likes: 1000, rating: 4 },
+        { name: "Shrimp Tacos", price: 50000, img: "image/Shrimp Tacos.jpg", desc: "Krevetkali takos, salsa va salat bilan", likes: 1000,vrating: 5 },
+        { name: "Double Cheeseburger", price: 60000, img: "image/Double Cheeseburger.jpg", desc: "Ikki qavatli burger, pishloq va maxsus sous bilan", likes: 100, rating: 5 },
+        { name: "Fried Chicken Bucket", price: 70000, img: "image/Fried Chicken Bucket.jpg", desc: " Qovurilgan tovuq qisimlari,sous bilan", likes: 1000, rating: 5 },
     ],
-        { name: "Philly Cheesesteak", price: 58000, img: "image/Philly Cheesesteak.jpg", desc: " Mol go'shti, pishloq va piyozli sendvich", likes: 100, rating: 3 },
-        { name: "Caesar Salad", price: 40000, img: "image/Caesar Salad.jpg", desc: "Sezar salati, tovuq va kruton bilan", likes: 1000, rating: 4 }
+    [
+        { name: "Philly Cheesesteak", price: 58000, img: "image/Philly Cheesesteak.jpg", desc: " Mol go'shti, pishloq va piyozli sendvich", likes: 100, rating: 5 },
+        { name: "Caesar Salad", price: 40000, img: "image/Caesar Salad.jpg", desc: "Sezar salati, tovuq va kruton bilan", likes: 1000, rating: 5 },
+    ]
     ];
 
 function renderMenu(menuItems) {
@@ -188,7 +282,8 @@ function renderMenu(menuItems) {
         // yulduzcha baholashni hosil qilish
         let stars = "";
         for (let i = 1; i <= 5; i++) {
-            stars += i <= item.rating ? `<i class="fas fa-star"></i>` : `<i class="far fa-star"></i>`;
+            stars += i <= item.rating ? `<i class="fas fa-star">
+            </i>` : `<i class="far fa-star"></i>`;
         }
 
         div.innerHTML = `
@@ -210,7 +305,7 @@ function renderMenu(menuItems) {
                     <i class="far fa-heart"></i> <span id="like-${div.dataset.item}">${item.likes}</span>
                 </button>
                 <button class="order-btn" onclick="addToCart('${item.name}', ${item.price})">
-                    Savatchaga qo'shish
+                    Savatga qo'shish
                 </button>
             </div>
         `;
@@ -225,7 +320,7 @@ renderMenu(menus[currentMenuIndex]);
 setInterval(() => {
     currentMenuIndex = (currentMenuIndex + 1) % menus.length;
     renderMenu(menus[currentMenuIndex]);
-}, 7200); // 2 soat
+}, 7000); // 2 soat
 function toggleLike(item) {
     const likeSpan = document.getElementById(`like-${item}`);
     let currentLikes = parseInt(likeSpan.textContent); // matndan son olish
@@ -240,12 +335,42 @@ function toggleLike(item) {
         likeBtn.classList.add('liked');
         likeBtn.querySelector('i').classList.replace('far', 'fas');
     } else {
-        // Agar qaytarib olinsa
-        currentLikes -= 1; // -1 kamaytirish
+        currentLikes -= 1;
         likedItems[item] = false;
         likeSpan.textContent = currentLikes;
         const likeBtn = document.querySelector(`.menu-item[data-item="${item}"] .like-btn`);
-        likeBtn.classList.remove('liked');
-        likeBtn.querySelector('i').classList.replace('fas', 'far');
+        if (likeBtn) {
+            likeBtn.classList.remove('liked');
+            likeBtn.querySelector('i').classList.replace('fas', 'far');
+        }
     }
+        stars.forEach((s, i) => {
+            if (i <= index) {
+                s.classList.add('fas', 'active');
+                s.classList.remove('far');
+            } else {
+                s.classList.add('far');
+                s.classList.remove('fas', 'active');
+            }
+        });
+   // script.js ning eng oxiri
+window.clearHistory = function() {
+    console.log("Tugma bosildi!"); 
+    
+    if (confirm("Diqqat! Barcha ma'lumotlar o'chib ketadi. Rozimisiz?")) {
+        // 1. Brauzer xotirasini butunlay tozalash
+        localStorage.clear(); 
+        
+        // 2. Vizual jadvalni tozalash
+        const tableBody = document.getElementById('history-body');
+        if (tableBody) {
+            tableBody.innerHTML = '';
+        }
+
+        alert("Hamma narsa muvaffaqiyatli o'chirildi!");
+        
+        // 3. Sahifani majburiy yangilash
+        window.location.href = window.location.href; 
+    }
+};
 }

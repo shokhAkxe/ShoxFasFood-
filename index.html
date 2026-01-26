@@ -59,13 +59,15 @@
                         <i class="far fa-star"></i>
                     </div>
                     <div class="price">48,000 so'm</div>
-                    <button class="like-btn" onclick="toggleLike('spicy-wings')"><i class="far fa-heart"></i><span class="like-count" id="like-spicy-wings">0</span></button>
+                    <button class="like-btn" onclick="toggleLike('spicy-wings')">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count" id="like-spicy-wings">0</span></button>
                     <button class="order-btn" onclick="addToCart('Spicy Chicken Wings', 48000)">Savatga qo'shish</button>
                 </div>
                 <div class="menu-item" data-item="tropical-bowl">
-                    <img src="image/Tropical Fruit Bowl.jpg" alt="Tropical Fruit Bowl">
-                    <h3>Tropical Fruit Bowl</h3>
-                    <p>Tropik mevalar, kokos yog'i va granola bilan</p>
+                    <img src="image/BBQ Ribs.jpg" alt="BBQ Ribs">
+                    <h3>BBQ Ribs</h3>
+                    <p>Barbekyu sousi bilan marinadlangan tovuq qovurg'asi</p>
                     <div class="rating" data-rating="5">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -74,11 +76,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <div class="price">35,000 so'm</div>
-                    <button class="like-btn" onclick="toggleLike('tropical-bowl')"><i class="far fa-heart"></i><span class="like-count" id="like-tropical-bowl">0</span></button>
+                    <button class="like-btn" onclick="toggleLike('tropical-bowl')">
+                        <i class="far fa-heart"></i><span class="like-count" id="like-tropical-bowl">0</span></button>
                     <button class="order-btn" onclick="addToCart('Tropical Fruit Bowl', 35000)">Savatga qo'shish</button>
                 </div>
                 <div class="menu-item" data-item="pulled-pork">
-                    <img src="image/Pulled Pork Sandwich.jpg" alt="Pulled Pork Sandwich">
+                    <img src="image/ch.jpg" alt="Pulled Pork Sandwich">
                     <h3>Pulled Pork Sandwich</h3>
                     <p>Tovuq go'shti, barbekyu sousi va salat bilan</p>
                     <div class="rating" data-rating="4">
@@ -89,7 +92,9 @@
                         <i class="far fa-star"></i>
                     </div>
                     <div class="price">55,000 so'm</div>
-                    <button class="like-btn" onclick="toggleLike('pulled-pork')"><i class="far fa-heart"></i><span class="like-count" id="like-pulled-pork">0</span></button>
+                    <button class="like-btn" onclick="toggleLike('pulled-pork')">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count" id="like-pulled-pork">0</span></button>
                     <button class="order-btn" onclick="addToCart('Pulled Pork Sandwich', 55000)">Savatga qo'shish</button>
                 </div>
                 <div class="menu-item" data-item="loaded-nachos">
@@ -104,7 +109,8 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <div class="price">45,000 so'm</div>
-                    <button class="like-btn" onclick="toggleLike('loaded-nachos')"><i class="far fa-heart"></i><span class="like-count" id="like-loaded-nachos">0</span></button>
+                    <button class="like-btn" onclick="toggleLike('loaded-nachos')">
+                        <i class="far fa-heart"></i><span class="like-count" id="like-loaded-nachos">0</span></button>
                     <button class="order-btn" onclick="addToCart('Loaded Nachos', 45000)">Savatga qo'shish</button>
                 </div>
             </div>
@@ -454,21 +460,27 @@
             <div class="delivery-info" id="delivery-info">
                 Yetkazib berish: 10,000 so'm
             </div>
+            
         </section>
 
         <section id="order" class="order-form">
             <h2>Buyurtma berish</h2>
             <div class="form-group">
                 <label for="name">Ism:</label>
-                <input type="text" id="name" required>
+              <input type="text" id="name" required 
+       oninput="this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '')"
+       placeholder="Ismingizni yozing">
             </div>
             <div class="form-group">
                 <label for="phone">Telefon:</label>
-                <input type="tel" id="phone" required>
+             <input type="tel" id="phone" required 
+       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+       placeholder="998901234567">
             </div>
             <div class="form-group">
                 <label for="address">Manzil:</label>
-                <input type="text" id="address" required>
+              <input type="text" id="address" required 
+       placeholder="Ko'cha, uy raqami">
             </div>
             <div class="form-group">
                 <label>To'lov usuli:</label>
@@ -479,6 +491,54 @@
             </div>
             <button class="order-btn" onclick="submitOrder()">Buyurtmani yuborish</button>
         </section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+    <h2>📜 Buyurtmalar tarixi</h2>
+<button 
+    onclick="(function(){ 
+        if(confirm('Haqiqatan ham barcha buyurtmalar tarixini o\'chirmoqchimisiz?')){ 
+            // 1. Ma'lumotni xotiradan o'chiramiz
+            localStorage.removeItem('orderHistory'); 
+            
+            // 2. Jadvalni vizual ravishda darhol tozalaymiz
+            const historyBody = document.getElementById('history-body'); 
+            if(historyBody) {
+                historyBody.innerHTML = ''; 
+            }
+            
+            // 3. Xabar beramiz (ixtiyoriy)
+            alert('Tarix tozalandi!'); 
+        } 
+    })()" 
+    onmouseover="this.style.transform='scale(1.1) translateY(-5px)'" 
+    onmouseout="this.style.transform='scale(1) translateY(0px)'"
+    style="background: linear-gradient(135deg, #ff5f6d, #ffc371); 
+           color: white; padding: 12px 25px; border: none; 
+           border-radius: 10px; cursor: pointer; font-weight: bold; 
+           transition: 0.3s ease; display: inline-block;">
+    🗑️ Tarixni tozalash
+</button>
+</div>
+<section id="history" class="container" style="margin-top: 50px;">
+    <h2 style="text-align: center;">📜 Buyurtmalar tarixi</h2>
+    <div style="overflow-x: auto;">
+        <table border = "1" style="width: 100%; border-collapse: collapse; margin-top: 20px; background: white;">
+            <thead style="background: #ff4b2b; color: white;">
+                <tr>
+                    <th>№</th>
+                    <th>Sana</th>
+                    <th>Mijoz</th>
+                    <th>Telefon</th>
+                    <th>Manzil</th>
+                    <th>Taomlar</th>
+                    <th>To'lov</th>
+                    <th>Summa</th>
+                </tr>
+            </thead>
+            <tbody id="history-body">
+                </tbody>
+        </table>
+    </div>
+</section>
     </div>
 
     <footer id="contact">
