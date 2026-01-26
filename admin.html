@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-overlay" class="overlay">
+        <div class="login-box">
+            <i class="fas fa-user-shield" style="font-size: 50px; color: #ff4500; margin-bottom: 20px;"></i>
+            <h2>Admin Kirish</h2>
+            <input type="text" id="admin-user" placeholder="Login">
+            <input type="password" id="admin-pass" placeholder="Parol">
+            <button onclick="checkAdminLogin()">Kirish</button>
+        </div>
+    </div>
+
+    <div class="admin-wrapper" id="admin-content" style="display: none;">
+        <aside class="sidebar">
+            <div class="logo"><i class="fas fa-hamburger"></i> <span>ADMIN PANEL</span></div>
+            <nav>
+                <a href="#" class="nav-link active" onclick="showTab('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#" class="nav-link" onclick="showTab('orders')"><i class="fas fa-shopping-cart"></i> Buyurtmalar</a>
+                <a href="#" class="nav-link" onclick="showTab('menu')"><i class="fas fa-utensils"></i> Menyu boshqaruvi</a>
+                <a href="#" class="nav-link" onclick="showTab('admins')"><i class="fas fa-users-cog"></i> Admin Sozlamalari</a>
+                <a href="#" onclick="location.reload()"><i class="fas fa-sign-out-alt"></i> Chiqish</a>
+            </nav>
+        </aside>
+
+        <main class="main-body">
+            <section id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card card-orange">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div><h3>Umumiy Tushum</h3><p id="total-revenue">0 so'm</p></div>
+                    </div>
+                    <div class="stat-card card-blue">
+                        <i class="fas fa-box"></i>
+                        <div><h3>Buyurtmalar</h3><p id="total-orders">0</p></div>
+                    </div>
+                    <div class="stat-card card-green">
+                        <i class="fas fa-users"></i>
+                        <div><h3>Adminlar</h3><p id="admins-count-dash">1</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orders" class="tab-content">
+                <h2>Kelib tushgan buyurtmalar</h2>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mijoz / Tel</th>
+                                <th>Manzil</th>
+                                <th>Taom / Summa</th>
+                                <th>Status</th>
+                                <th>Amal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-list"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="menu" class="tab-content">
+                <h2>Yangi taom qo'shish</h2>
+                <div class="form-box">
+                    <input type="text" id="food-name" placeholder="Taom nomi">
+                    <input type="number" id="food-price" placeholder="Narxi">
+                    <textarea id="food-desc" placeholder="Taom haqida ma'lumot..."></textarea>
+                    <input type="file" id="food-img-file" accept="image/*" onchange="handleImageUpload(this)">
+                    <button class="btn-add" onclick="saveFood()">Menyuga qo'shish</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>Rasm</th><th>Nomi</th><th>Narxi</th><th>Amal</th></tr>
+                        </thead>
+                        <tbody id="menu-list"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="admins" class="tab-content">
+                <h2>Adminlarni boshqarish</h2>
+                <div class="form-box">
+                    <input type="text" id="new-user" placeholder="Yangi login">
+                    <input type="password" id="new-pass" placeholder="Yangi parol">
+                    <button class="btn-add" onclick="addAdmin()">Admin Qo'shish</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead><tr><th>Login</th><th>Amal</th></tr></thead>
+                        <tbody id="admins-list"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

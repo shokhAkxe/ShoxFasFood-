@@ -373,4 +373,137 @@ window.clearHistory = function() {
         window.location.href = window.location.href; 
     }
 };
+function submitOrder() {
+    // 1. Formadagi ma'lumotlarni o'qib olamiz
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const payment = document.querySelector('input[name="payment"]:checked').value;
+
+    // 2. Oddiy tekshiruv (Validatsiya)
+    if (!name || !phone || !address) {
+        alert("Iltimos, barcha maydonlarni to'ldiring!");
+        return;
+    }
+
+    // 3. Savatchadagi ma'lumotlarni olish (Hozircha qo'lda yozamiz, savatchangiz bo'lsa o'shani ulaymiz)
+    // Masalan: Savatcha hozircha bo'sh bo'lsa, "Tanlanmagan" deb ketadi
+    const cartItems = "Yozgi set (misol)"; 
+    const totalPrice = 125000; // Misol uchun narx
+
+    // 4. Admin panel uchun yangi buyurtma ob'ektini yaratish
+    const newOrder = {
+        id: Date.now(),
+        date: new Date().toLocaleString(),
+        customerName: name,
+        customerPhone: phone,
+        customerAddress: address,
+        paymentMethod: payment === 'cash' ? "Naqd" : "Karta",
+        items: cartItems,
+        total: totalPrice,
+        status: "Yangi"
+    };
+
+    // 5. LocalStorage (Baza) dan eski ma'lumotlarni olish
+    let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+
+    // 6. Yangi buyurtmani bazaga qo'shish
+    orderHistory.push(newOrder);
+
+    // 7. Bazani saqlash
+    localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+
+    // 8. Mijozga xabar berish va formani tozalash
+    alert("Rahmat, " + name + "! Buyurtmangiz qabul qilindi.");
+    
+    // Formani tozalash
+    document.getElementById('name').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('address').value = "";
+}
+function displayMenu() {
+    const menu = JSON.parse(localStorage.getItem('menuItems')) || [];
+    const menuContainer = document.getElementById('menu-container'); // HTML dagi menyu id si
+    menuContainer.innerHTML = "";
+
+    menu.forEach(food => {
+        menuContainer.innerHTML += `
+            <div class="food-card">
+                <img src="${food.img}">
+                <h3>${food.name}</h3>
+                <p>${Number(food.price).toLocaleString()} so'm</p>
+                <button onclick="addToCart('${food.name}', ${food.price})">Savatga qo'shish</button>
+            </div>
+        `;
+    });
+}
+window.onload = displayMenu;
+function trackOrderStatus() {
+    setInterval(() => {
+        const orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        // Mijoz o'z buyurtmasini ismi yoki telefoni orqali topadi
+        // (Hozircha oxirgi buyurtmani tekshiramiz)
+        const myOrder = orders[orders.length - 1]; 
+
+        if (myOrder) {
+            const popup = document.getElementById('order-status-popup');
+            const statusText = document.getElementById('status-text');
+
+            if (myOrder.status === "Tayyorlanmoqda") {
+                popup.style.display = "block";
+                popup.style.background = "#ffc107"; // Sariq rang
+                statusText.innerText = "Oshpaz taomingizni tayyorlashni boshladi! 👨‍🍳";
+            } 
+            else if (myOrder.status === "Yetkazilmoqda") {
+                popup.style.display = "block";
+                popup.style.background = "#17a2b8"; // Moviy rang
+                statusText.innerText = "Kuryer buyurtmangizni olib yo'lga chiqdi! 🛵";
+            }
+        }
+    }, 5000); // Har 5 soniyada tekshiradi
+}
+
+// Sayt yuklanganda kuzatuvni boshlash
+window.onload = () => {
+    displayMenu(); // Menyuni chiqarish
+    trackOrderStatus(); // Statusni kuzatish
+};
+function submitOrder() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const payment = document.querySelector('input[name="payment"]:checked').value;
+
+    if (!name || !phone || !address) {
+        alert("Iltimos, hamma joyni to'ldiring!");
+        return;
+    }
+
+    // SAVATCHADAGI TAOMLARNI YIG'ISH (Oddiy misol)
+    const items = "2x Lavash, 1x Coca-cola"; // Bu yerga savatchangizdagi o'zgaruvchini qo'ying
+    const total = 85000; // Bu yerga umumiy narx o'zgaruvchisini qo'ying
+
+    const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+
+    const newOrder = {
+        id: Date.now(),
+        date: new Date().toLocaleString(),
+        customerName: name,      // ADMIN SHU NOM BILAN O'QIYDI
+        customerPhone: phone,     // ADMIN SHU NOM BILAN O'QIYDI
+        customerAddress: address, // ADMIN SHU NOM BILAN O'QIYDI
+        paymentMethod: payment === 'cash' ? "Naqd" : "Karta",
+        items: items,             // ADMIN SHU NOM BILAN O'QIYDI
+        total: total,             // ADMIN SHU NOM BILAN O'QIYDI
+        status: "Yangi"
+    };
+
+    orderHistory.push(newOrder);
+    localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+
+    alert("Buyurtmangiz qabul qilindi!");
+    // Formani tozalash
+    document.getElementById('name').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('address').value = "";
+}
 }

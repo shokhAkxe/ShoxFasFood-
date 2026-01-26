@@ -816,5 +816,21 @@ nav a:hover {
     box-shadow: 0 6px 15px rgba(255, 95, 109, 0.5) !important;
     filter: brightness(1.1) !important;
 }
+.status-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: slideUp 0.5s ease-out;
+}
 
+@keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 }

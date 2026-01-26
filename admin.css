@@ -1,0 +1,42 @@
+:root {
+    --primary: #ff4500;
+    --dark-bg: #1a1a2e;
+    --sidebar-bg: #16213e;
+    --text-light: #adb5bd;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
+
+/* Login */
+.overlay { position: fixed; inset: 0; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.login-box { background: white; padding: 40px; border-radius: 15px; width: 320px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.login-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+.login-box button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.login-box button:hover { background: #e03e00; transform: translateY(-2px); }
+
+/* Sidebar */
+.admin-wrapper { display: flex; min-height: 100vh; }
+.sidebar { width: 250px; background: var(--sidebar-bg); color: white; padding: 25px; }
+.sidebar .logo { font-size: 22px; font-weight: bold; color: var(--primary); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+.sidebar nav a { display: block; color: var(--text-light); padding: 15px; text-decoration: none; border-radius: 10px; margin-bottom: 5px; transition: 0.3s; }
+.sidebar nav a:hover, .sidebar nav a.active { background: var(--primary); color: white; }
+
+/* Dashboard Cards */
+.main-body { flex: 1; padding: 30px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+.stat-card { padding: 25px; border-radius: 15px; color: white; display: flex; align-items: center; gap: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.stat-card i { font-size: 40px; opacity: 0.8; }
+.card-orange { background: linear-gradient(135deg, #ff9a44, #ff4500); }
+.card-blue { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
+.card-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+/* Forms & Tables */
+.form-box { background: white; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; max-width: 600px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.form-box input, .form-box textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+.btn-add { background: var(--sidebar-bg); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; }
+.table-container { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th, .admin-table td { padding: 15px; border-bottom: 1px solid #eee; text-align: left; }
+.status-badge { background: #fff3cd; color: #856404; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
