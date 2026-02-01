@@ -378,7 +378,7 @@ nav a:hover {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999 !important;
         }
 
         .welcome-icon {
@@ -833,4 +833,5 @@ nav a:hover {
     from { transform: translateY(100px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+
 }
